@@ -5,40 +5,37 @@ Lista de Disciplinas
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">Lista de Disciplinas</h1>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover shadow-sm">
-            <thead class="thead-dark">
-                <tr>
-                    <th class="text-center">Nome da Disciplina</th>
-                    <th class="text-center">Professor</th>
-                    <th class="text-center">Média</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in disciplinas_com_media %}
-                <tr>
-                    <td class="text-center">
-                        <a href="{% url 'detalhe_disciplina' item.disciplina.id %}" class="text-primary">
-                            {{ item.disciplina.nome }}
-                        </a>
-                    </td>
-                    <td class="text-center">{{ item.disciplina.professor }}</td>
-                    <td class="text-center">
-                        {% if item.media != 'Sem notas' %}
-                        {{ item.media }}
-                        {% else %}
-                        <span class="text-muted">Sem notas</span>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% if not disciplinas_com_media %}
+    {% if disciplinas_com_media %}
+    <ul class="list-group mt-5">
+        {% for item in disciplinas_com_media %}
+        <li class="list-group-item d-flex justify-content-between align-items-center"  >
+            <div  class="d-flex justify-content-between gap-3 align-items-center" style="height: 50px;" >
+                <a class="link-offset-2 link-underline link-underline-opacity-0 fw-semibold text-primary-emphasis" href="{% url 'detalhe_disciplina' item.disciplina.id %}" >
+                {{ item.disciplina.nome }}
+                </a>
+                <br>
+                <div>
+                    Professor: {{ item.disciplina.professor }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-between gap-3 align-items-center">
+                <p class="mb-0"> Média:</p>
+                <div>
+                    {% if item.media != 'Sem notas' %}
+                    <span class="badge bg-success rounded-pill">{{ item.media }}</span>
+                    {% else %}
+                    <span class="text-muted">Sem notas</span>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
     <div class="alert alert-info text-center" role="alert">
         Nenhuma disciplina encontrada.
     </div>
     {% endif %}
+
 </div>
 {% endblock %}
