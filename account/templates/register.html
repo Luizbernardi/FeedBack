@@ -4,40 +4,40 @@ Registro
 {% endblock %}
 {% block content %}
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
-    <div class="card shadow-sm bg-primary-subtle" style="width: 100%; max-width: 400px;">
-        <div class=" text-center">
-            <h4 class="mt-2">Registrar</h4>
+    <div class="card shadow-lg border-0" style="width: 100%; max-width: 400px; background-color: #f8f9fa; border-radius: 10px;">
+        <div class="card-header bg-info text-white text-center" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h4 class="my-2 text-dark">Registrar</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body p-4">
             <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="username" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu usuário" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
-            </div>
-            <div class="mb-3">
-                <label for="password_confirm" class="form-label">Confirme a Senha</label>
-                <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha" required>
-            </div>
-            {% if error_message %}
-            <div class="alert alert-danger" role="alert">
-                {{ error_message }}
-            </div>
-            {% endif %}
-            <button type="submit" class="btn btn-dark w-100">Registrar</button>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuário</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu usuário" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password_confirm" class="form-label">Confirme a Senha</label>
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha" required>
+                </div>
+                {% if error_message %}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+                <button type="submit" class="btn text-dark bg-info w-100 py-2">Registrar</button>
             </form>
         </div>
-        <div class="card-footer text-center">
-            <small class="text-muted">Já tem uma conta? <a href="{% url 'login' %}">Faça login</a></small>
+        <div class="card-footer text-center bg-light" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <small class="text-muted">Já tem uma conta? <a href="{% url 'login' %}" class="text-decoration-none">Faça login</a></small>
         </div>
     </div>
-</div>  
+</div>
 {% endblock %}
